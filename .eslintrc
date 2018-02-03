@@ -1,0 +1,17 @@
+{
+  "extends": "kupibilet",
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["components", "src", "src/img"]
+      }
+    }
+  },
+  "rules": {
+    "linebreak-style": 0
+  },
+  "globals": {
+    "window": true,
+    "document": true
+  }
+}
