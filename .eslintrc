@@ -3,7 +3,7 @@
   "settings": {
     "import/resolver": {
       "node": {
-        "paths": ["components", "src", "src/img"]
+        "paths": ["src", "src/img"]
       }
     }
   },

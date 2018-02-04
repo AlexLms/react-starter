@@ -18,7 +18,7 @@ class App extends React.Component {
   render() {
     return (
       <main>
-        {Hello()}
+        <Hello />
       </main>
 
     )
