@@ -38,7 +38,7 @@ const common = merge([
 
     resolve: {
       extensions: ['.js', '.jsx'],
-      modules: ['node_modules', 'components', 'src'],
+      modules: ['node_modules', 'src'],
     },
 
     plugins: [
