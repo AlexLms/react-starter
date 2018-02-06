@@ -1,27 +1,24 @@
-const webpack = require('webpack')
-const path = require('path')
+const webpack = require('webpack');
+const path = require('path');
 
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
-const merge = require('webpack-merge')
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const merge = require('webpack-merge');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
-const include = './includes'
-const babel = require(`${include}/babel`)
-const extractCSS = require(`${include}/css.extract`)
-const css = require(`${include}/css`)
-const devServer = require(`${include}/dev-server`)
-const fonts = require(`${include}/fonts`)
-const images = require(`${include}/images`)
-const uglifyJS = require(`${include}/js.uglify`)
-const sass = require(`${include}/sass`)
+const include = './webpack';
+const babel = require(`${include}/babel.js`);
+const devServer = require(`${include}/dev-server.js`);
+const fonts = require(`${include}/fonts.js`);
+const images = require(`${include}/images.js`);
+const uglifyJS = require(`${include}/js.uglify.js`);
 
-const isProd = process.env.NODE_ENV === 'production'
+const isProd = process.env.NODE_ENV === 'production';
 
 const PATHS = {
   source: path.join(__dirname, '/src'),
   build: path.join(__dirname, '/dist'),
-}
+};
 
 const common = merge([
   {
@@ -58,7 +55,7 @@ const common = merge([
           twitter: false,
           yandex: false,
           windows: false,
-        }
+        },
       }),
       new HtmlWebpackPlugin({
         title: 'React Starter Pack',
@@ -71,7 +68,7 @@ const common = merge([
         name: 'common',
         filename: 'common.[hash].js',
         minChunks(module) {
-          return module.context && module.context.indexOf('node_modules') >= 0
+          return module.context && module.context.indexOf('node_modules') >= 0;
         },
       }),
       new webpack.NamedModulesPlugin(),
@@ -82,10 +79,10 @@ const common = merge([
   fonts(),
   babel(),
   images(),
-])
+]);
 
 module.exports = () =>
   (isProd ?
-    merge([common, extractCSS(), uglifyJS()])
+    merge([common, uglifyJS()])
     :
-    merge([common, devServer(), sass(), css()]))
+    merge([common, devServer()]));

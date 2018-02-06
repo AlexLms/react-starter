@@ -1,28 +1,23 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 // components
-import Hello from 'components/Hello'
+import HelloPanel from '~/containers/helloPanel/HelloPanel';
 
-
-import './styles/style.sass'
 
 class App extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       // selected: '',
-    }
+    };
   }
 
   render() {
     return (
-      <main>
-        <Hello />
-      </main>
-
-    )
+      <HelloPanel />
+    );
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('root'))
+ReactDOM.render(<App />, document.getElementById('root'));
