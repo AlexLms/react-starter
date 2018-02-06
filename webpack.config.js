@@ -10,6 +10,8 @@ const include = './webpack';
 const babel = require(`${include}/babel.js`);
 const devServer = require(`${include}/dev-server.js`);
 const fonts = require(`${include}/fonts.js`);
+const extractCSS = require(`${include}/css.extract.js`);
+const css = require(`${include}/css.js`);
 const images = require(`${include}/images.js`);
 const uglifyJS = require(`${include}/js.uglify.js`);
 
@@ -58,7 +60,7 @@ const common = merge([
         },
       }),
       new HtmlWebpackPlugin({
-        title: 'React Starter Pack',
+        title: 'React Starter',
         template: `${PATHS.source}/index.ejs`,
         inject: 'body',
         chunks: ['app', 'common'],
@@ -83,6 +85,6 @@ const common = merge([
 
 module.exports = () =>
   (isProd ?
-    merge([common, uglifyJS()])
+    merge([common, extractCSS(), uglifyJS()])
     :
-    merge([common, devServer()]));
+    merge([common, devServer(), css()]));

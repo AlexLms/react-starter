@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'normalize.css';
 
 // components
 import HelloPanel from '~/containers/helloPanel/HelloPanel';
