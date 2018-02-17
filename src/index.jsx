@@ -1,19 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'normalize.css';
+import '~/styles/index.js';
 
 // components
-import HelloPanel from '~/containers/helloPanel/HelloPanel';
+import HelloPanel from '~/pages/helloPanel/HelloPanel';
 
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      // selected: '',
-    };
-  }
-
   render() {
     return (
       <HelloPanel />

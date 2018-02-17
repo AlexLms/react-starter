@@ -44,7 +44,7 @@ const common = merge([
       new webpack.NoEmitOnErrorsPlugin(),
       new CleanWebpackPlugin(PATHS.build),
       new FaviconsWebpackPlugin({
-        logo: `${PATHS.source}/img/logo.png`,
+        logo: `${PATHS.source}/files/img/logo.png`,
         EmitStats: false,
         icons: {
           android: false,

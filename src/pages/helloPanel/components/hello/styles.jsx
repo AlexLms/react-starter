@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import '~/components/globalStyles/globalStyles.js';
 
 const Text = styled.h1`
-  font-family: 'pf-regular';
+  font-family: 'catamaran-regular';
+  font-size: 50px;
 `;
 const TextWrap = styled.div`
   max-width: 960px;

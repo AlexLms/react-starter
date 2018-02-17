@@ -1,14 +1,14 @@
 import React from 'react';
-import Mac from '~/img/mac.jpg';
+import Mac from '~/files/img/mac.jpg';
 import { TextWrap, Text } from './styles';
 
 
-const Hello = () => [
+const Hello = () => (
   <TextWrap>
     <Text>Hello World</Text>
     <img src={Mac} alt="" />
-  </TextWrap>,
-];
+  </TextWrap>
+);
 
 
 export default Hello;
