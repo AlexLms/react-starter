@@ -21,6 +21,7 @@
     }],
     "syntax-dynamic-import",
     ["babel-root-import", {
+      "rootPathPrefix": "~",
       "rootPathSuffix": "src"
     }]
   ]

@@ -1,6 +1,6 @@
 import React from 'react';
 import Mac from '~/files/img/mac.jpg';
-import { TextWrap, Text } from './styles';
+import { TextWrap, Text } from './styles.js';
 
 
 const Hello = () => (
