@@ -21,7 +21,7 @@ If you familiar with styled it's better to use it instead of Sass.
 
 - your [Webpack congif](https://github.com/AlexLasagna/react-starter/tree/sass-branch/webpack) files
 - your [fonts.js and reset.js](https://github.com/AlexLasagna/react-starter/tree/master/src/styles/base) files
-- you [components](https://github.com/AlexLasagna/react-starter/tree/master/src/pages)
+- your [components](https://github.com/AlexLasagna/react-starter/tree/master/src/pages)
 - all imgs fonts [etc](https://github.com/AlexLasagna/react-starter/tree/master/src/files)
 
 # Build production
