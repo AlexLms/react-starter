@@ -1,4 +1,6 @@
-# React boilerplate [Webpack 4, babel 7, styled-components, linter]
+# ~ React boilerplate ~
+
+# [Webpack 4, babel 7, styled-components, linter]
 
 Fast builder for your SPA projects.
 
