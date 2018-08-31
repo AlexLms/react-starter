@@ -1,4 +1,4 @@
-# React boilerplate [styled-components, linter]
+# React boilerplate [Webpack 4, babel 7, styled-components, linter]
 
 Fast builder for your SPA projects.
 
@@ -7,7 +7,7 @@ There are 2 versions of a project:
 1) [styled components](https://www.styled-components.com/) `git clone https://github.com/AlexLasagna/react-starter.git`
 2) [sass](https://sass-lang.com/) `git clone -b sass-branch https://github.com/AlexLasagna/react-starter.git`
 
-If you familiar with styled it's better to use it instead of Sass.
+If you familiar with styled it's better to use it instead of Sass branch.
 
 # Installation
 
@@ -19,10 +19,10 @@ If you familiar with styled it's better to use it instead of Sass.
 
 # Location of stuff
 
-<!-- - your [Webpack congif](https://github.com/AlexLasagna/react-starter/tree/sass-branch/webpack) files -->
-<!-- - your [fonts.js and reset.js](https://github.com/AlexLasagna/react-starter/tree/master/src/styles/base) files -->
-<!-- - your [components](https://github.com/AlexLasagna/react-starter/tree/master/src/pages) -->
-<!-- - all imgs fonts [etc](https://github.com/AlexLasagna/react-starter/tree/master/src/files) -->
+- your [Webpack congif](https://github.com/AlexLasagna/react-starter/tree/master/webpack) files
+- your [fonts.js and reset.js](https://github.com/AlexLasagna/react-starter/tree/master/src/styles) files
+- your [components](https://github.com/AlexLasagna/react-starter/tree/master/src)
+- all imgs fonts [etc](https://github.com/AlexLasagna/react-starter/tree/master/src/static)
 
 # Build production
 
