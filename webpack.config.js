@@ -4,87 +4,71 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const merge = require('webpack-merge');
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
-const include = './webpack';
-const babel = require(`${include}/babel.js`);
-const devServer = require(`${include}/dev-server.js`);
-const fonts = require(`${include}/fonts.js`);
-const extractCSS = require(`${include}/css.extract.js`);
-const css = require(`${include}/css.js`);
-const images = require(`${include}/images.js`);
-const uglifyJS = require(`${include}/js.uglify.js`);
+const devServer = require('./webpack/devserver');
+const babel = require('./webpack/babel');
+const images = require('./webpack/images');
+const fonts = require('./webpack/fonts');
+const optimize = require('./webpack/optimization');
+const css = require('./webpack/css');
 
-const isProd = process.env.NODE_ENV === 'production';
-
-const PATHS = {
-  source: path.join(__dirname, '/src'),
-  build: path.join(__dirname, '/dist'),
-};
 
 const common = merge([
   {
     entry: {
-      app: `${PATHS.source}/index.jsx`,
+      index: './src/index.js',
     },
-
     output: {
-      path: PATHS.build,
       filename: '[name].bundle.js',
+      path: path.resolve(__dirname, 'dist')
     },
-
-    devtool: 'cheap-module-source-map',
-
+    // ? stuff for aliases
     resolve: {
       extensions: ['.js', '.jsx'],
-      modules: ['node_modules', 'src'],
+      modules: [path.resolve(__dirname, 'src'), 'node_modules'],
     },
-
     plugins: [
-      new webpack.NoEmitOnErrorsPlugin(),
-      new CleanWebpackPlugin(PATHS.build),
-      new FaviconsWebpackPlugin({
-        logo: `${PATHS.source}/files/img/logo.png`,
-        EmitStats: false,
-        icons: {
-          android: false,
-          appleIcon: false,
-          appleStartup: false,
-          coast: false,
-          favicons: true,
-          firefox: false,
-          opengraph: false,
-          twitter: false,
-          yandex: false,
-          windows: false,
-        },
-      }),
-      new HtmlWebpackPlugin({
-        title: 'React Starter',
-        template: `${PATHS.source}/index.ejs`,
-        inject: 'body',
-        chunks: ['app', 'common'],
-      }),
-
-      new webpack.optimize.CommonsChunkPlugin({
-        name: 'common',
-        filename: 'common.[hash].js',
-        minChunks(module) {
-          return module.context && module.context.indexOf('node_modules') >= 0;
-        },
-      }),
-      new webpack.NamedModulesPlugin(),
-      new webpack.HotModuleReplacementPlugin(),
       new webpack.optimize.OccurrenceOrderPlugin(),
+      new HtmlWebpackPlugin({
+        template: `${path.join(__dirname, 'src')}/index.html`,
+        chunks: ['index']
+      }),
     ],
+    optimization: {
+      namedModules: true,
+      noEmitOnErrors: true,
+    },
+    // ? disable ratelimit size warnings
+    performance: {
+      hints: false
+    },
+    stats: {
+      reasons: false,
+      modules: false,
+    }
   },
-  fonts(),
   babel(),
   images(),
-]);
+  fonts(),
+])
 
-module.exports = () =>
-  (isProd ?
-    merge([common, extractCSS(), uglifyJS()])
-    :
-    merge([common, devServer(), css()]));
+module.exports = (env, options) => {
+  let isProduction = options.mode === "production";
+  return (isProduction
+    ? merge([
+      common, {
+        plugins: [new CleanWebpackPlugin(['dist'])]
+      },
+      optimize(),
+      css(isProduction)
+    ])
+
+    : merge([
+      common, {
+        plugins: [new webpack.HotModuleReplacementPlugin()],
+        devtool: 'inline-source-map'
+      },
+      devServer(),
+      css(isProduction)
+    ]))
+}

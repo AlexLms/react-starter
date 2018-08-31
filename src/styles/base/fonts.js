@@ -1,11 +1,11 @@
 import { injectGlobal } from 'styled-components';
 
 const fonts = {
-  catamaran: {
-    regular: {
-      woff: require('files/fonts/Catamaran-Regular.woff'),
-      ttf: require('files/fonts/Catamaran-Regular.ttf'),
-      eot: require('files/fonts/Catamaran-Regular.eot'),
+  Stem: {
+    Bold: {
+      woff: require('static/fonts/Stem-Bold.woff'),
+      ttf: require('static/fonts/Stem-Bold.ttf'),
+      eot: require('static/fonts/Stem-Bold.eot'),
     },
   },
 };
