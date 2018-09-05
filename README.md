@@ -13,7 +13,9 @@ If you familiar with styled it's better to use it instead of Sass branch.
 
 # Installation
 
-1) Open your console and type:
+0) Open your console and type:
+
+1) `cd` to react-starter folder.
 
 2) Install webpack dependencies via npm `npm i` or yarn `yarn install`.
 
