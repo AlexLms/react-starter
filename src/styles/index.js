@@ -1,2 +1,2 @@
-import 'styles/base/reset';
-import 'styles/base/fonts';
+import 'src/styles/base/reset';
+import 'src/styles/base/fonts';

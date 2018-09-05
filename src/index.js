@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import './styles';
 
 // components
-import Home from 'pages/Home';
+import Home from 'src/pages/Home';
 
 const Main = (
   <Home />

@@ -1,8 +1,8 @@
 import React from 'react';
 
 // components
-import Header from 'components/Header';
-import Intro from 'components/_Intro';
+import Header from 'src/components/Header';
+import Intro from 'src/components/_Intro';
 
 import { App } from './styles';
 

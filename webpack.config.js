@@ -20,18 +20,21 @@ const common = merge([
     },
     output: {
       filename: '[name].bundle.js',
-      path: path.resolve(__dirname, 'dist')
+      path: path.resolve(__dirname, 'dist'),
     },
     // ? stuff for aliases
     resolve: {
       extensions: ['.js', '.jsx'],
-      modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+      modules: ['node_modules'],
+      alias: {
+        src: path.resolve(__dirname, 'src'),
+      },
     },
     plugins: [
       new webpack.optimize.OccurrenceOrderPlugin(),
       new HtmlWebpackPlugin({
         template: `${path.join(__dirname, 'src')}/index.html`,
-        chunks: ['index']
+        chunks: ['index'],
       }),
     ],
     optimization: {
@@ -40,35 +43,35 @@ const common = merge([
     },
     // ? disable ratelimit size warnings
     performance: {
-      hints: false
+      hints: false,
     },
     stats: {
       reasons: false,
       modules: false,
-    }
+    },
   },
   babel(),
   images(),
   fonts(),
-])
+]);
 
 module.exports = (env, options) => {
-  let isProduction = options.mode === "production";
+  const isProduction = options.mode === 'production';
   return (isProduction
     ? merge([
       common, {
-        plugins: [new CleanWebpackPlugin(['dist'])]
+        plugins: [new CleanWebpackPlugin(['dist'])],
       },
       optimize(),
-      css(isProduction)
+      css(isProduction),
     ])
 
     : merge([
       common, {
         plugins: [new webpack.HotModuleReplacementPlugin()],
-        devtool: 'inline-source-map'
+        devtool: 'inline-source-map',
       },
       devServer(),
-      css(isProduction)
-    ]))
-}
+      css(isProduction),
+    ]));
+};

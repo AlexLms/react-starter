@@ -3,9 +3,9 @@ import { injectGlobal } from 'styled-components';
 const fonts = {
   Stem: {
     Bold: {
-      woff: require('static/fonts/Stem-Bold.woff'),
-      ttf: require('static/fonts/Stem-Bold.ttf'),
-      eot: require('static/fonts/Stem-Bold.eot'),
+      woff: require('src/static/fonts/Stem-Bold.woff'),
+      ttf: require('src/static/fonts/Stem-Bold.ttf'),
+      eot: require('src/static/fonts/Stem-Bold.eot'),
     },
   },
 };
