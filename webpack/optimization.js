@@ -7,28 +7,28 @@ module.exports = () => ({
       new UglifyJsPlugin({
         uglifyOptions: {
           mangle: {
-            keep_fnames: true
+            keep_fnames: true,
           },
           compress: {
             warnings: false, // ? Suppress uglification warnings
             pure_getters: true,
             unsafe: true,
-            unsafe_comps: true
+            unsafe_comps: true,
           },
           output: {
-            comments: false
+            comments: false,
           },
           toplevel: false,
           nameCache: null,
           ie8: false,
           keep_classnames: undefined,
           keep_fnames: false,
-          exclude: [/\.min\.js$/gi] // ? skip pre-minified libs
-        }
-      })
-    ]
+          exclude: [/\.min\.js$/gi], // ? skip pre-minified libs
+        },
+      }),
+    ],
   },
   plugins: [
     new OptimizeCssAssetsPlugin(),
-  ]
+  ],
 });

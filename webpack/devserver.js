@@ -11,7 +11,7 @@ module.exports = () => ({
     stats: {
       reasons: false,
       modules: false,
-    }
+    },
   },
 });
 
