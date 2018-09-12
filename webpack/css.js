@@ -1,15 +1,6 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = (production) => ({
-  plugins: [new MiniCssExtractPlugin({
-
-    filename: production
-      ? 'css/[name].[hash].css'
-      : 'css/[name].css',
-    chunkFilename: production
-      ? 'css/[id].[hash].css'
-      : 'css/[id].css',
-  })],
   module: {
     rules: [
       {
@@ -24,16 +15,6 @@ module.exports = (production) => ({
             }
             : 'style-loader', {
             loader: 'css-loader',
-            options: {
-              modules: true,
-              importLoaders: 1,
-              localIdentName: '[local]--[hash:base64:5]',
-            },
-          }, {
-            loader: 'postcss-loader',
-            options: {
-              plugins: [require('autoprefixer')],
-            },
           },
         ],
       },

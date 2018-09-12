@@ -3,7 +3,10 @@ const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const merge = require('webpack-merge');
+// ? need to install "webpack-bundle-analyzer"
+// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const devServer = require('./webpack/devserver');
 const babel = require('./webpack/babel');
@@ -31,16 +34,13 @@ const common = merge([
       },
     },
     plugins: [
-      new webpack.optimize.OccurrenceOrderPlugin(),
+      // ? analyze bundle
+      // new BundleAnalyzerPlugin(),
       new HtmlWebpackPlugin({
         template: `${path.join(__dirname, 'src')}/index.html`,
         chunks: ['index'],
       }),
     ],
-    optimization: {
-      namedModules: true,
-      noEmitOnErrors: true,
-    },
     // ? disable ratelimit size warnings
     performance: {
       hints: false,
@@ -60,7 +60,18 @@ module.exports = (env, options) => {
   return (isProduction
     ? merge([
       common, {
-        plugins: [new CleanWebpackPlugin(['dist'])],
+        plugins: [
+          new CleanWebpackPlugin(['dist']),
+          new webpack.optimize.OccurrenceOrderPlugin(),
+          new MiniCssExtractPlugin({
+            filename: isProduction
+              ? 'css/[name].[hash].css'
+              : 'css/[name].css',
+            chunkFilename: isProduction
+              ? 'css/[id].[hash].css'
+              : 'css/[id].css',
+          }),
+        ],
       },
       optimize(),
       css(isProduction),
@@ -69,7 +80,7 @@ module.exports = (env, options) => {
     : merge([
       common, {
         plugins: [new webpack.HotModuleReplacementPlugin()],
-        devtool: 'inline-source-map',
+        devtool: 'source-map',
       },
       devServer(),
       css(isProduction),

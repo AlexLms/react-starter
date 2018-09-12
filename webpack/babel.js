@@ -9,7 +9,10 @@ module.exports = () => ({
           options: {
             presets: ['@babel/preset-env', '@babel/preset-react'],
             // ? plugin for styled-components
-            plugins: ['babel-plugin-styled-components'],
+            plugins: [
+              'babel-plugin-styled-components',
+              '@babel/plugin-proposal-class-properties',
+            ],
           },
         },
       },
