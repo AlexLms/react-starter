@@ -1,6 +1,6 @@
 import React from 'react';
 
-import logo from 'src/static/imgs/logo.svg';
+import logo from '../../static/imgs/logo.svg';
 import { AppHeader, Logo, Title } from './styles';
 
 const Header = () => (

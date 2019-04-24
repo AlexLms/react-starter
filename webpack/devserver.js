@@ -7,7 +7,6 @@ module.exports = () => ({
     compress: true,
     port: 3000,
     open: true,
-    // ? not display all stuff
     stats: {
       reasons: false,
       modules: false,
@@ -15,4 +14,4 @@ module.exports = () => ({
   },
 });
 
-// ? work if we have installed "webpack-dev-server" via npm
+// only work if we have installed "webpack-dev-server" via npm

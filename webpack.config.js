@@ -5,8 +5,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const merge = require('webpack-merge');
-// ? need to install "webpack-bundle-analyzer"
-// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const devServer = require('./webpack/devserver');
 const babel = require('./webpack/babel');
@@ -15,6 +13,7 @@ const fonts = require('./webpack/fonts');
 const optimize = require('./webpack/optimization');
 const css = require('./webpack/css');
 
+const rules = [babel(), images(), fonts()];
 
 const common = merge([
   {
@@ -25,23 +24,13 @@ const common = merge([
       filename: '[name].bundle.js',
       path: path.resolve(__dirname, 'dist'),
     },
-    // ? stuff for aliases
-    resolve: {
-      extensions: ['.js', '.jsx'],
-      modules: ['node_modules'],
-      alias: {
-        src: path.resolve(__dirname, 'src'),
-      },
-    },
     plugins: [
-      // ? analyze bundle
-      // new BundleAnalyzerPlugin(),
       new HtmlWebpackPlugin({
         template: `${path.join(__dirname, 'src')}/index.html`,
         chunks: ['index'],
       }),
     ],
-    // ? disable ratelimit size warnings
+    // disable ratelimit size warnings
     performance: {
       hints: false,
     },
@@ -49,40 +38,43 @@ const common = merge([
       reasons: false,
       modules: false,
     },
+    module: {
+      rules,
+    },
   },
-  babel(),
-  images(),
-  fonts(),
 ]);
 
 module.exports = (env, options) => {
   const isProduction = options.mode === 'production';
-  return (isProduction
-    ? merge([
-      common, {
-        plugins: [
-          new CleanWebpackPlugin(['dist']),
-          new webpack.optimize.OccurrenceOrderPlugin(),
-          new MiniCssExtractPlugin({
-            filename: isProduction
-              ? 'css/[name].[hash].css'
-              : 'css/[name].css',
-            chunkFilename: isProduction
-              ? 'css/[id].[hash].css'
-              : 'css/[id].css',
-          }),
-        ],
-      },
-      optimize(),
-      css(isProduction),
-    ])
 
-    : merge([
-      common, {
-        plugins: [new webpack.HotModuleReplacementPlugin()],
-        devtool: 'source-map',
-      },
-      devServer(),
-      css(isProduction),
-    ]));
+  const prodConfig = merge([
+    common,
+    {
+      plugins: [
+        new CleanWebpackPlugin(),
+        new webpack.optimize.OccurrenceOrderPlugin(),
+        new MiniCssExtractPlugin({
+          filename: isProduction
+            ? 'css/[name].[hash].css'
+            : 'css/[name].css',
+          chunkFilename: isProduction
+            ? 'css/[id].[hash].css'
+            : 'css/[id].css',
+        }),
+      ],
+    },
+    optimize(),
+    css(isProduction),
+  ]);
+
+  const devConfig = merge([
+    common, {
+      plugins: [new webpack.HotModuleReplacementPlugin()],
+      devtool: 'source-map',
+    },
+    devServer(),
+    css(isProduction),
+  ]);
+
+  return (isProduction ? prodConfig : devConfig);
 };

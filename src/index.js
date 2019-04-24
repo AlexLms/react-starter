@@ -1,13 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import './styles';
-
 // components
-import Home from 'src/pages/Home';
+import Layout from './layout';
 
 const Main = (
-  <Home />
+  <Layout />
 );
 
 ReactDOM.render(Main, document.getElementById('root'));
