@@ -1,15 +1,12 @@
 # React boilerplate
 
-## [Webpack 4, babel 7, styled-components, linter]
-
 Fast builder for your SPA projects.
 
-There are 2 versions of a project:
+<p>
+	<img src="https://readmeimgs-xigrprrnur.now.sh/react.png" alt="React starter pack">
+</p>
 
-1) [styled components](https://www.styled-components.com/) `git clone https://github.com/AlexLasagna/react-starter.git`
-2) [sass](https://sass-lang.com/) `git clone -b sass-branch https://github.com/AlexLasagna/react-starter.git`
-
-If you familiar with styled it's better to use it instead of Sass.
+Easily configure and add webpack modules and style your app without any stress with [styled-components](https://www.styled-components.com/)
 
 ## Navigation
 
@@ -54,13 +51,25 @@ According to version 4 of [styled-components](https://www.styled-components.com/
 
 ## File location
 
-- [webpack modules](https://github.com/AlexLasagna/react-starter/tree/master/webpack) to work with styles, files, etc
-- [components](https://github.com/AlexLasagna/react-starter/tree/master/src/components)
-- [fonts, icons, etc](https://github.com/AlexLasagna/react-starter/tree/master/src/static)
+    .
+    ├── src/                    # App folder with all developer stuff
+    │   ├── components/         # All components used in the project
+    │   ├── layout/             # Laout the entire app is stored in one place
+    │   ├── pages/              # Pages that use components/
+    │   ├── static/             # Used to store fonts, icons, images
+    │   └── ...
+    ├── webpack/                # Modules you can easily add to config
+    ├── webpack.config.js       # All webpack settings
+    └── ...
+
 
 ## Build production
 
-To build a production version of your app you need to type `npm run build` || `yarn build` in a console. This will create dist folder where everything will be compressed and minified.
+To build a production version of your app you need to type
+
+`npm run build` || `yarn build`
+
+This will create dist folder where everything will be compressed and minified.
 
 ## Aliases
 
