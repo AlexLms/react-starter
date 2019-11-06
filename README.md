@@ -3,7 +3,7 @@
 Fast builder for your SPA projects.
 
 <p>
-	<img src="https://readmeimgs-xigrprrnur.now.sh/react.png" alt="React starter pack">
+	<img src="https://readmeimgs-dbetwjhldo.now.sh/react.png" alt="React starter pack">
 </p>
 
 Easily configure and add webpack modules and style your app without any stress with [styled-components](https://www.styled-components.com/)
@@ -30,7 +30,7 @@ Easily configure and add webpack modules and style your app without any stress w
 
 ## Concept
 
-All your webpack modules are in [webpack](https://github.com/AlexLasagna/react-starter/tree/master/webpack) folder. You can easily call the module you need in `webpack.config.js` file.
+All your webpack modules are in [webpack](https://github.com/AlexLms/react-starter/tree/master/webpack) folder. You can easily call the module you need in `webpack.config.js` file.
 
 ```javascript
 const rules = [babel(), images(), fonts(), anyOtherModule()];
