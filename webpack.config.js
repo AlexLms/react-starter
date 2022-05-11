@@ -2,9 +2,9 @@ const webpack = require('webpack');
 const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 
 const devServer = require('./webpack/devserver');
 const babel = require('./webpack/babel');
@@ -52,7 +52,6 @@ module.exports = (env, options) => {
     {
       plugins: [
         new CleanWebpackPlugin(),
-        new webpack.optimize.OccurrenceOrderPlugin(),
         new MiniCssExtractPlugin({
           filename: isProduction
             ? 'css/[name].[hash].css'

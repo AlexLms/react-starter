@@ -1,18 +1,17 @@
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = () => ({
   optimization: {
-    namedModules: true,
-    noEmitOnErrors: true,
+    moduleIds: 'named',
+    emitOnErrors: false,
     minimizer: [
-      new UglifyJsPlugin({
-        uglifyOptions: {
+      new TerserPlugin({
+        terserOptions: {
           mangle: {
             keep_fnames: true,
           },
           compress: {
-            warnings: false, // ? Suppress uglification warnings
             pure_getters: true,
             unsafe: true,
             unsafe_comps: true,
@@ -22,15 +21,11 @@ module.exports = () => ({
           },
           toplevel: false,
           nameCache: null,
-          ie8: false,
-          keep_classnames: undefined,
-          keep_fnames: false,
-          exclude: [/\.min\.js$/gi], // ? skip pre-minified libs
         },
       }),
     ],
   },
   plugins: [
-    new OptimizeCssAssetsPlugin(),
+    new CssMinimizerPlugin(),
   ],
 });
